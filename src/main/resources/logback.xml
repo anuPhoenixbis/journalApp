@@ -1,0 +1,40 @@
+<configuration>
+<!--    basically this allows us to customize how we want the console logs to show up
+also that this creates a journalApp.log which holds all the logs printed in the console, basically for industry standards
+-->
+
+    <appender name="myConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+<!--        this is the set of rules of how the logs will be shown in the console-->
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss:SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="myFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+<!--        this is the set of rules of how the logs will be shown in the file-->
+        <file>
+            journalApp.log
+        </file>
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss:SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+<!--            new files roll daily-->
+            <fileNamePattern>journalApp-%d{yy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+
+    </appender>
+
+    <root level="INFO">
+<!--        using the appenders we made above in the root level with logs set at INFO level-->
+        <appender-ref ref="myConsoleAppender" />
+        <appender-ref ref="myFileAppender" />
+    </root>
+
+</configuration>
