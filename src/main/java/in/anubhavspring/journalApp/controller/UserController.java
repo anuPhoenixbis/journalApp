@@ -36,6 +36,11 @@ public class UserController {
     @Autowired
     private WeatherService weatherService;
 
+    /**
+     * Retrieves all users.
+     *
+     * @return a list of all users
+     */
     @GetMapping
     public List<User> getAllUsers(){
         return userService.getAll();
@@ -61,6 +66,11 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    /**
+     * Deletes the authenticated user.
+     *
+     * @return a ResponseEntity with HTTP status 204 (NO_CONTENT)
+     */
     @DeleteMapping
     public ResponseEntity<?> deleteUser(@RequestBody User user){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -70,6 +80,11 @@ public class UserController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    /**
+     * Returns a personalized greeting for the authenticated user with weather information from Jamshedpur.
+     *
+     * @return a response containing "Hola" followed by the username and, if weather data is available, the feels-like temperature at Jamshedpur
+     */
     @GetMapping("/greet")
     public ResponseEntity<?> greeting(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
