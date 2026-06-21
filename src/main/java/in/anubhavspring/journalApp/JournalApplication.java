@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.MongoTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class JournalApplication {
@@ -16,4 +17,9 @@ public class JournalApplication {
 	}
 
 
+	@Bean
+	public RestTemplate restTemplate() {
+//		so that this bean instance is ready to be injected
+		return new RestTemplate();
+	}
 }

@@ -1,10 +1,12 @@
 package in.anubhavspring.journalApp.controller;
 
+import in.anubhavspring.journalApp.api.response.WeatherResponse;
 import in.anubhavspring.journalApp.entity.JournalEntry;
 import in.anubhavspring.journalApp.entity.User;
 import in.anubhavspring.journalApp.repository.UserRepo;
 import in.anubhavspring.journalApp.service.JournalEntryService;
 import in.anubhavspring.journalApp.service.UserService;
+import in.anubhavspring.journalApp.service.WeatherService;
 import org.apache.coyote.Response;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class UserController {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private WeatherService weatherService;
 
     @GetMapping
     public List<User> getAllUsers(){
@@ -64,5 +69,16 @@ public class UserController {
         userRepo.deleteByUsername(username);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @GetMapping("/greet")
+    public ResponseEntity<?> greeting(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        WeatherResponse weatherResponse = weatherService.getWeather("Jamshedpur");
+        String greet="";
+        if(weatherResponse != null){
+             greet = " Feels like " +weatherResponse.getCurrent().getFeelslike()+" at Jamshedpur";
+        }
+
+        return new ResponseEntity<>("Hola "+auth.getName() + greet,HttpStatus.OK);
     }
 }
