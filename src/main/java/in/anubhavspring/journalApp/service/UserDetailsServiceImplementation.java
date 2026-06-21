@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /*
 * In spring security when we pass our username and pass, it asks us 2 questions: does the user exists?
@@ -40,7 +40,7 @@ import org.springframework.stereotype.Component;
     Authenticated / Rejected
 * */
 
-@Component
+@Service
 public class UserDetailsServiceImplementation implements UserDetailsService {
 
     @Autowired

@@ -7,12 +7,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component//so the spring stores it
+//@Component//so the spring stores it
+@Service //spl bean for services classes for code-readability and to denote where we hold the business logic
 @Slf4j
 public class JournalEntryService {
 //    this where we define certain services using the repo and to make db calls
