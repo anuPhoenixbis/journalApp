@@ -12,11 +12,19 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class JournalApplication {
 
+	/**
+	 * Bootstraps and starts the Spring application.
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(JournalApplication.class, args);
 	}
 
 
+	/**
+	 * Creates a RestTemplate bean for dependency injection in the Spring application context.
+	 *
+	 * @return a RestTemplate instance
+	 */
 	@Bean
 	public RestTemplate restTemplate() {
 //		so that this bean instance is ready to be injected

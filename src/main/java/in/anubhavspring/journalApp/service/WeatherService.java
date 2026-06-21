@@ -15,7 +15,12 @@ public class WeatherService {
 
     @Autowired
     private RestTemplate restTemplate;
-//    used to config and our api requests seamlessly
+/**
+     * Fetches current weather data for a specified city.
+     *
+     * @param city the name of the city
+     * @return the current weather information for the city
+     */
 
     public WeatherResponse getWeather(String city){
         String finalApi = API.replace("CITY",city).replace("API_KEY",apiKey);
